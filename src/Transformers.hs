@@ -16,7 +16,7 @@ germanizeQuotes (Quoted _ xs) = Span ("", [], []) $ Str "\187" : xs ++ [ Str "\1
 germanizeQuotes i = i
 
 
--- LaTex center blocks lose their formatting upon translation to the AST,
+-- LaTeX center blocks lose their formatting upon translation to the AST,
 -- hence we must manually add back desired styling for each affected snippet.
 fixPara :: Block -> Block
 fixPara p@(Para xs) = case xs of 
