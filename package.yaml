@@ -1,0 +1,44 @@
+name:                neobarb-tex-filter
+version:             0.1.0.0
+github:              "Van-Ziegelstein/neobarb-tex-filter"
+license:             BSD3
+author:              "Klotz"
+maintainer:          "vanziegelstein@gmail.com"
+copyright:           "2020 Klotz"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+synopsis:            Pandoc filter for volume 1 of the Neobarbarian scriptures. 
+category:            Text
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/Van-Ziegelstein/neobarb-tex-filter#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- mtl
+- pandoc-types
+
+library:
+  source-dirs: src
+
+executables:
+  neobarb-tex-filter-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -Wall
+    - -Wcompat
+    - -Wincomplete-record-updates
+    - -Wincomplete-uni-patterns
+    - -Wredundant-constraints
+    dependencies:
+    - neobarb-tex-filter
