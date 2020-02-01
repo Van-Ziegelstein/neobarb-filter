@@ -1,5 +1,5 @@
-# neobarb-tex-filter
-A custom Pandoc filter to automate conversion of the
+# Neobarb TeX Filter
+A custom [Pandoc](https://github.com/jgm/pandoc) filter to automate conversion of the
 first volume of Neobarbarian lore (initially codified in
 LaTeX markup). Mainly smoothes out certain parts of the
 AST representation.
