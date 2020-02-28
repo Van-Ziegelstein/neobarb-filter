@@ -1,19 +1,13 @@
-module Transformers (
-module Text.Pandoc.JSON,
-pipeline
+module Neobarb.Forge (
+    pipeline
 ) where
 
 
 import Data.List
 import Control.Monad.State
-import Text.Pandoc.JSON
+import Text.Pandoc.Definition
 import Text.Pandoc.Walk
-
-
--- Guillemets are prefered in German book formatting over standard quotes.
-germanizeQuotes :: Inline -> Inline
-germanizeQuotes (Quoted _ xs) = Span ("", [], []) $ Str "\187" : xs ++ [ Str "\171" ]
-germanizeQuotes i = i
+import Neobarb.Quoting
 
 
 -- LaTeX center blocks lose their formatting upon translation to the AST,
