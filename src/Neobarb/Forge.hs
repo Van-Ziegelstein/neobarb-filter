@@ -3,29 +3,29 @@ module Neobarb.Forge (
 ) where
 
 
-import Data.List
-import Control.Monad.State
-import Text.Pandoc.Definition
-import Text.Pandoc.Walk
-import Neobarb.Quoting
+import qualified Data.List as L
+import qualified Control.Monad.State as S
+import qualified Text.Pandoc.Definition as P
+import Text.Pandoc.Walk (walk, walkM)
+import Neobarb.Quoting (germanizeQuotes)
 
 
 -- LaTeX center blocks lose their formatting upon translation to the AST,
 -- hence we must manually add back desired styling for each affected snippet.
-fixPara :: Block -> Block
-fixPara p@(Para xs) = case xs of 
-                                y@(Str "M." : Space : Str "Truthblitz" :_) -> plainDiv ["placard","center"] y              
-                                y@(Strong (Str "Nur" : Space : Str "f\252r" :_) :_) -> plainDiv ["placard"] y
-                                [Emph y@(Str "Mein" : Space : Str "Mitbewohner" :_)] -> centerQuote y
-                                [Emph y@(Str "Mittagspause" : Space : Str "-" :_)] -> centerQuote y
-                                [Emph y@(_:_:Str "Overdrive!":_)] -> centerQuote y
-                                [Emph y@(Strong [Str "Entropie:"] :_)] -> quoteDiv y
-                                [Emph y@(Str "Und" : Space : Str "also" :_)] -> quoteDiv y
-                                [Emph y@(Str "F\252r" : Space : Str "immer" :_)] -> quoteSign y
-                                y@(Str "K." : Space :_) -> quoteSign y
+fixPara :: P.Block -> P.Block
+fixPara p@(P.Para xs) = case xs of 
+                                y@(P.Str "M." : P.Space : P.Str "Truthblitz" :_) -> plainDiv ["placard","center"] y              
+                                y@(P.Strong (P.Str "Nur" : P.Space : P.Str "f\252r" :_) :_) -> plainDiv ["placard"] y
+                                [P.Emph y@(P.Str "Mein" : P.Space : P.Str "Mitbewohner" :_)] -> centerQuote y
+                                [P.Emph y@(P.Str "Mittagspause" : P.Space : P.Str "-" :_)] -> centerQuote y
+                                [P.Emph y@(_:_:P.Str "Overdrive!":_)] -> centerQuote y
+                                [P.Emph y@(P.Strong [P.Str "Entropie:"] :_)] -> quoteDiv y
+                                [P.Emph y@(P.Str "Und" : P.Space : P.Str "also" :_)] -> quoteDiv y
+                                [P.Emph y@(P.Str "F\252r" : P.Space : P.Str "immer" :_)] -> quoteSign y
+                                y@(P.Str "K." : P.Space :_) -> quoteSign y
                                 _ -> p
                                 where
-                                    plainDiv c t = Div ("", c, []) [ Plain t ]
+                                    plainDiv c t = P.Div ("", c, []) [ P.Plain t ]
                                     centerQuote = plainDiv ["quote", "center"]
                                     quoteDiv = plainDiv ["quote"]
                                     quoteSign = plainDiv ["placard", "quote"]
@@ -34,21 +34,21 @@ fixPara b = b
 
 -- Brute-force recursion to the poem block, as we need a broader view of the AST than the walk functions provide.
 -- Then use the monadic walk and state monad to reformat the poem.
-fixPoemBlock :: [Block] -> [Block]
+fixPoemBlock :: [P.Block] -> [P.Block]
 fixPoemBlock [] = []
-fixPoemBlock (h@(Header _ _ (Str "J\228ger":_)) : xs) = let 
-                                                            (poem, r) = splitAt 16 xs
-                                                            injectSpaces (Para ps) = do
-                                                                lineNum <- get
-                                                                put (lineNum + 1)
+fixPoemBlock (h@(P.Header _ _ (P.Str "J\228ger":_)) : xs) = let 
+                                                            (poem, r) = L.splitAt 16 xs
+                                                            injectSpaces (P.Para ps) = do
+                                                                lineNum <- S.get
+                                                                S.put (lineNum + 1)
                                                                 if (lineNum == 5 || lineNum == 11 || lineNum == 16)
-                                                                then return $ Plain (ps ++ [LineBreak, LineBreak])
-                                                                else return $ Plain (ps ++ [LineBreak])
+                                                                then return $ P.Plain (ps ++ [P.LineBreak, P.LineBreak])
+                                                                else return $ P.Plain (ps ++ [P.LineBreak])
                                                         in 
-                                                            h : Div ("",["quote"],[]) (evalState (walkM injectSpaces poem) 0) : r
+                                                            h : P.Div ("",["quote"],[]) (S.evalState (walkM injectSpaces poem) 0) : r
 fixPoemBlock (x:xs) = x : fixPoemBlock xs
 
 
 -- Lift everything to document level
-pipeline :: Pandoc -> Pandoc
+pipeline :: P.Pandoc -> P.Pandoc
 pipeline = (walk fixPoemBlock) . (walk fixPara) . (walk germanizeQuotes)

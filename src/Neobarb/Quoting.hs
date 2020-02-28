@@ -3,9 +3,9 @@ module Neobarb.Quoting (
 ) where
 
 
-import Text.Pandoc.Definition
+import qualified Text.Pandoc.Definition as P
 
 -- Guillemets are prefered in German book formatting over standard quotes.
-germanizeQuotes :: Inline -> Inline
-germanizeQuotes (Quoted _ xs) = Span ("", [], []) $ Str "\187" : xs ++ [ Str "\171" ]
+germanizeQuotes :: P.Inline -> P.Inline
+germanizeQuotes (P.Quoted _ xs) = P.Span ("", [], []) $ P.Str "\187" : xs ++ [ P.Str "\171" ]
 germanizeQuotes i = i

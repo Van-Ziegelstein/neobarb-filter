@@ -1,7 +1,7 @@
 module Main where
 
-import Text.Pandoc.JSON
-import Neobarb.Forge
+import Text.Pandoc.JSON (toJSONFilter)
+import Neobarb.Forge (pipeline)
 
 
 main :: IO ()
