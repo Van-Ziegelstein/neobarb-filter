@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Neobarb.Quoting (
     germanizeQuotes
 ) where
