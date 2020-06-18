@@ -46,23 +46,23 @@ injectBlanks bPoints (P.Para ps) = do
 injectBlanks _ b = return b
 
 
-
 -- Brute-force recursion to the two poem blocks, as we need a broader view of the AST than the walk functions provide.
-fixAccordBlock :: [P.Block] -> [P.Block]
-fixAccordBlock [] = []
-fixAccordBlock (h@(P.Header _ _ (P.Str "J\228ger":_)) : xs) = let (poem, r) = L.splitAt 18 xs
-                                                            in h : P.Div ("",["quote"],[]) (S.evalState (walkM (injectBlanks [3,6..12]) poem) 1) : r
-fixAccordBlock (x:xs) = x : fixAccordBlock xs
-
-
-fixBarbBlock :: [P.Block] -> [P.Block]
-fixBarbBlock [] = []
-fixBarbBlock (h@(P.Header _ _ (P.Str "Barbaricum":_)) : xs) = let (poem, r) = L.splitAt 16 xs
-                                                            in h : P.Div ("",["quote"],[]) (S.evalState (walkM (injectBlanks [ 5, 11 ]) poem) 1) : r
-fixBarbBlock (x:xs) = x : fixBarbBlock xs
+fixPoemBlocks :: [P.Block] -> [P.Block]
+fixPoemBlocks [] = []
+fixPoemBlocks (h@(P.Header _ _ (P.Str "J\228ger":_)) : xs) = let (poem, r) = L.splitAt 18 xs
+                                                            in 
+                                                                h 
+                                                                : P.Div ("",["quote"],[]) (S.evalState (walkM (injectBlanks [3,6..12]) poem) 1) 
+                                                                : fixPoemBlocks r
+fixPoemBlocks (h@(P.Header _ _ (P.Str "Barbaricum":_)) : xs) = let (poem, r) = L.splitAt 16 xs
+                                                            in 
+                                                                h 
+                                                                : P.Div ("",["quote"],[]) (S.evalState (walkM (injectBlanks [ 5, 11 ]) poem) 1) 
+                                                                : r
+fixPoemBlocks (x:xs) = x : fixPoemBlocks xs
 
 
 
 -- Lift everything to document level
 pipeline :: P.Pandoc -> P.Pandoc
-pipeline = (walk fixBarbBlock) . (walk fixAccordBlock) . (walk fixPara) . (walk germanizeQuotes)
+pipeline = (walk fixPoemBlocks) . (walk fixPara) . (walk germanizeQuotes)
