@@ -34,23 +34,35 @@ fixPara p@(P.Para xs) = case xs of
 fixPara b = b
 
 
--- Brute-force recursion to the poem block, as we need a broader view of the AST than the walk functions provide.
--- Then use the monadic walk and state monad to reformat the poem.
-fixPoemBlock :: [P.Block] -> [P.Block]
-fixPoemBlock [] = []
-fixPoemBlock (h@(P.Header _ _ (P.Str "J\228ger":_)) : xs) = let 
-                                                            (poem, r) = L.splitAt 16 xs
-                                                            injectSpaces (P.Para ps) = do
-                                                                lineNum <- S.get
-                                                                S.put (lineNum + 1)
-                                                                if (lineNum == 5 || lineNum == 11 || lineNum == 16)
-                                                                then return $ P.Plain (ps ++ [P.LineBreak, P.LineBreak])
-                                                                else return $ P.Plain (ps ++ [P.LineBreak])
-                                                        in 
-                                                            h : P.Div ("",["quote"],[]) (S.evalState (walkM injectSpaces poem) 0) : r
-fixPoemBlock (x:xs) = x : fixPoemBlock xs
+
+-- Helper to inject blank lines into a block of text, using line numbers as point of reference.
+injectBlanks :: [Int] -> P.Block -> S.State Int P.Block 
+injectBlanks bPoints (P.Para ps) = do
+                                lineN <- S.get
+                                S.put (lineN + 1)
+                                if L.or $ L.map (== lineN) bPoints
+                                then return $ P.Plain (ps ++ [P.LineBreak, P.LineBreak])
+                                else return $ P.Plain (ps ++ [P.LineBreak])
+injectBlanks _ b = return b
+
+
+
+-- Brute-force recursion to the two poem blocks, as we need a broader view of the AST than the walk functions provide.
+fixAccordBlock :: [P.Block] -> [P.Block]
+fixAccordBlock [] = []
+fixAccordBlock (h@(P.Header _ _ (P.Str "J\228ger":_)) : xs) = let (poem, r) = L.splitAt 18 xs
+                                                            in h : P.Div ("",["quote"],[]) (S.evalState (walkM (injectBlanks [3,6..12]) poem) 1) : r
+fixAccordBlock (x:xs) = x : fixAccordBlock xs
+
+
+fixBarbBlock :: [P.Block] -> [P.Block]
+fixBarbBlock [] = []
+fixBarbBlock (h@(P.Header _ _ (P.Str "Barbaricum":_)) : xs) = let (poem, r) = L.splitAt 16 xs
+                                                            in h : P.Div ("",["quote"],[]) (S.evalState (walkM (injectBlanks [ 5, 11 ]) poem) 1) : r
+fixBarbBlock (x:xs) = x : fixBarbBlock xs
+
 
 
 -- Lift everything to document level
 pipeline :: P.Pandoc -> P.Pandoc
-pipeline = (walk fixPoemBlock) . (walk fixPara) . (walk germanizeQuotes)
+pipeline = (walk fixBarbBlock) . (walk fixAccordBlock) . (walk fixPara) . (walk germanizeQuotes)
