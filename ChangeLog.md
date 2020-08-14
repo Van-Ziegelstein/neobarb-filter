@@ -1,5 +1,8 @@
 # Changelog for neobarb-tex-filter
 
+## Version 2.1.0
+- Typography: add some filter functions for English single and double quotes.
+
 ## Version 2.0.0
 - Feature extension: refactor the script so that multiple books and languages can be handled.
 
