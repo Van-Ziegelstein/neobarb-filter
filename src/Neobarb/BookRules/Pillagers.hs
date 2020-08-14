@@ -40,7 +40,7 @@ injectBlanks :: [Int] -> P.Block -> S.State Int P.Block
 injectBlanks bPoints (P.Para ps) = do
                                 lineN <- S.get
                                 S.put (lineN + 1)
-                                if L.or $ L.map (== lineN) bPoints
+                                if L.or $ map (== lineN) bPoints
                                 then return $ P.Plain (ps ++ [P.LineBreak, P.LineBreak])
                                 else return $ P.Plain (ps ++ [P.LineBreak])
 injectBlanks _ b = return b
