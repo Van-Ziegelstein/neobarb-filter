@@ -1,8 +1,8 @@
 module Main where
 
 import Text.Pandoc.JSON (toJSONFilter)
-import Neobarb.Forge (pipeline)
+import Neobarb.ArgForge (optForge)
 
 
 main :: IO ()
-main = toJSONFilter pipeline
+main = toJSONFilter optForge

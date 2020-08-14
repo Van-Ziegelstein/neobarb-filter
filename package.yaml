@@ -1,5 +1,5 @@
 name:                neobarb-tex-filter
-version:             0.1.0.0
+version:             0.2.0.0
 github:              "Van-Ziegelstein/neobarb-tex-filter"
 license:             BSD3
 author:              "Klotz"
@@ -11,7 +11,7 @@ extra-source-files:
 - ChangeLog.md
 
 # Metadata used when publishing your package
-synopsis:            Pandoc filter for volume 1 of the Neobarbarian scriptures. 
+synopsis:            Pandoc filter for the sacred tomes of the Neobarbarian tribe. 
 category:            Text
 
 # To avoid duplicated efforts in documentation and dealing with the

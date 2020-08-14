@@ -1,15 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Neobarb.Forge (
-    pipeline
+module Neobarb.BookRules.Pillagers (
+    fixPara,
+    fixPoemBlocks
 ) where
 
 
 import qualified Data.List as L
 import qualified Control.Monad.State as S
 import qualified Text.Pandoc.Definition as P
-import Text.Pandoc.Walk (walk, walkM)
-import Neobarb.Quoting (germanizeQuotes)
+import Text.Pandoc.Walk (walkM)
 
 
 -- LaTeX center blocks lose their formatting upon translation to the AST,
@@ -61,8 +61,3 @@ fixPoemBlocks (h@(P.Header _ _ (P.Str "Barbaricum":_)) : xs) = let (poem, r) = L
                                                                 : r
 fixPoemBlocks (x:xs) = x : fixPoemBlocks xs
 
-
-
--- Lift everything to document level
-pipeline :: P.Pandoc -> P.Pandoc
-pipeline = (walk fixPoemBlocks) . (walk fixPara) . (walk germanizeQuotes)

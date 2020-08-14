@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Neobarb.Quoting (
+module Neobarb.LangRules.German (
     germanizeQuotes
 ) where
 

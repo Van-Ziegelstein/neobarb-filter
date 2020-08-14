@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 9cb8da9c5326a46062fb42dd8e2ccfd04349ca8799bef720d0eeef5a70cd08b3
+-- hash: bddfbac21e1d0bf58b61d646a80e3255c20c4cc054ab833d2628aec98d9c9582
 
 name:           neobarb-tex-filter
 version:        0.1.0.0
@@ -29,8 +29,11 @@ source-repository head
 
 library
   exposed-modules:
-      Neobarb.Forge
-      Neobarb.Quoting
+      Neobarb.ArgForge
+      Neobarb.BookRules.Barbmoon
+      Neobarb.BookRules.Pillagers
+      Neobarb.LangRules.German
+      Neobarb.Smelter
   other-modules:
       Paths_neobarb_tex_filter
   hs-source-dirs:
