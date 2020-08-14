@@ -4,6 +4,7 @@ module Neobarb.ArgForge (
 
 
 import System.Console.GetOpt
+import Data.Char (toLower)
 import Text.Pandoc.Definition (Pandoc)
 import Neobarb.Smelter (smeltBookParts, smeltLangParts)
 
@@ -26,11 +27,11 @@ options :: [OptDescr (Options -> Options)]
 options =
         [ 
             Option ['b'] ["book"] 
-            (ReqArg (\b opts -> opts { optBook = b }) "BOOK") 
+            (ReqArg (\b opts -> opts { optBook = map (toLower) b }) "BOOK") 
             "The tribal scripture to be converted.", 
 
             Option ['l'] ["language"] 
-            (ReqArg (\l opts -> opts { optLang = l }) "LANGUAGE") 
+            (ReqArg (\l opts -> opts { optLang = map (toLower) l }) "LANGUAGE") 
             "The language rules to use for the conversion." 
         ]
 
