@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ed9c3d0fa096e415031b8a7b2af488f837acd7254f3f659e0dfe18f70d67b43d
+-- hash: 7786885e209b22bdeb75b08387b02b6719351ddccdec8d59a9d66eb0bebd55b5
 
 name:           neobarb-tex-filter
 version:        0.2.0.0
@@ -32,6 +32,7 @@ library
       Neobarb.ArgForge
       Neobarb.BookRules.Barbmoon
       Neobarb.BookRules.Pillagers
+      Neobarb.LangRules.English
       Neobarb.LangRules.German
       Neobarb.Smelter
   other-modules:
@@ -42,6 +43,7 @@ library
       base >=4.7 && <5
     , mtl
     , pandoc-types
+    , text
   default-language: Haskell2010
 
 executable neobarb-tex-filter-exe
@@ -56,4 +58,5 @@ executable neobarb-tex-filter-exe
     , mtl
     , neobarb-tex-filter
     , pandoc-types
+    , text
   default-language: Haskell2010
