@@ -1,4 +1,8 @@
-# Changelog for neobarb-tex-filter
+# Changelog for neobarb-filter
+
+## Version 3.0.0
+- Books: add conversion rules for stories from the Klotzverse (authored by Eliphas).
+- Project rename: remove the "tex" constraint from the name, as we're already using the filter with different input formats.
 
 ## Version 2.1.0
 - Typography: add some filter functions for English single and double quotes.

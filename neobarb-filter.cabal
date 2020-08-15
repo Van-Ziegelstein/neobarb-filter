@@ -4,15 +4,15 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 1756b7c2e3aa846a201bf88f7da0b532a14534dda373c06224795257db3092f3
+-- hash: b4ab190cb4a1ce35c477ccf5e3f7a7ca0bcf4b500d0b74507a2b782929fef870
 
-name:           neobarb-tex-filter
-version:        0.2.1.0
+name:           neobarb-filter
+version:        0.3.0.0
 synopsis:       Pandoc filter for the sacred tomes of the Neobarbarian tribe.
-description:    Please see the README on GitHub at <https://github.com/Van-Ziegelstein/neobarb-tex-filter#readme>
+description:    Please see the README on GitHub at <https://github.com/Van-Ziegelstein/neobarb-filter#readme>
 category:       Text
-homepage:       https://github.com/Van-Ziegelstein/neobarb-tex-filter#readme
-bug-reports:    https://github.com/Van-Ziegelstein/neobarb-tex-filter/issues
+homepage:       https://github.com/Van-Ziegelstein/neobarb-filter#readme
+bug-reports:    https://github.com/Van-Ziegelstein/neobarb-filter/issues
 author:         Klotz
 maintainer:     vanziegelstein@gmail.com
 copyright:      2020 Klotz
@@ -25,7 +25,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/Van-Ziegelstein/neobarb-tex-filter
+  location: https://github.com/Van-Ziegelstein/neobarb-filter
 
 library
   exposed-modules:
@@ -37,7 +37,7 @@ library
       Neobarb.LangRules.German
       Neobarb.Smelter
   other-modules:
-      Paths_neobarb_tex_filter
+      Paths_neobarb_filter
   hs-source-dirs:
       src
   build-depends:
@@ -47,17 +47,17 @@ library
     , text
   default-language: Haskell2010
 
-executable neobarb-tex-filter-exe
+executable neobarb-filter-exe
   main-is: Main.hs
   other-modules:
-      Paths_neobarb_tex_filter
+      Paths_neobarb_filter
   hs-source-dirs:
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
     , mtl
-    , neobarb-tex-filter
+    , neobarb-filter
     , pandoc-types
     , text
   default-language: Haskell2010

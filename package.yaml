@@ -1,6 +1,6 @@
-name:                neobarb-tex-filter
-version:             0.2.1.0
-github:              "Van-Ziegelstein/neobarb-tex-filter"
+name:                neobarb-filter
+version:             0.3.0.0
+github:              "Van-Ziegelstein/neobarb-filter"
 license:             BSD3
 author:              "Klotz"
 maintainer:          "vanziegelstein@gmail.com"
@@ -17,7 +17,7 @@ category:            Text
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/Van-Ziegelstein/neobarb-tex-filter#readme>
+description:         Please see the README on GitHub at <https://github.com/Van-Ziegelstein/neobarb-filter#readme>
 
 dependencies:
 - base >= 4.7 && < 5
@@ -29,7 +29,7 @@ library:
   source-dirs: src
 
 executables:
-  neobarb-tex-filter-exe:
+  neobarb-filter-exe:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -42,4 +42,4 @@ executables:
     - -Wincomplete-uni-patterns
     - -Wredundant-constraints
     dependencies:
-    - neobarb-tex-filter
+    - neobarb-filter
