@@ -12,6 +12,7 @@ import qualified Neobarb.LangRules.German as G
 import qualified Neobarb.LangRules.English as E
 import qualified Neobarb.BookRules.Pillagers as B
 import qualified Neobarb.BookRules.Barbmoon as M
+import qualified Neobarb.BookRules.Klotzverse as K
 
 
 -- Lift all language specific typography adjustments to document level
@@ -25,4 +26,5 @@ smeltLangParts _ = id
 smeltBookParts :: String -> P.Pandoc -> P.Pandoc
 smeltBookParts "pillagers" = (walk B.fixPoemBlocks) . (walk B.fixPara)
 smeltBookParts "barbmoon" = walk M.fixHeadings
+smeltBookParts "klotzverse" = walk K.cyberfy
 smeltBookParts _ = id

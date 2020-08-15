@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7786885e209b22bdeb75b08387b02b6719351ddccdec8d59a9d66eb0bebd55b5
+-- hash: 1756b7c2e3aa846a201bf88f7da0b532a14534dda373c06224795257db3092f3
 
 name:           neobarb-tex-filter
-version:        0.2.0.0
+version:        0.2.1.0
 synopsis:       Pandoc filter for the sacred tomes of the Neobarbarian tribe.
 description:    Please see the README on GitHub at <https://github.com/Van-Ziegelstein/neobarb-tex-filter#readme>
 category:       Text
@@ -31,6 +31,7 @@ library
   exposed-modules:
       Neobarb.ArgForge
       Neobarb.BookRules.Barbmoon
+      Neobarb.BookRules.Klotzverse
       Neobarb.BookRules.Pillagers
       Neobarb.LangRules.English
       Neobarb.LangRules.German
