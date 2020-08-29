@@ -1,5 +1,10 @@
 # Changelog for neobarb-filter
 
+## Version 3.1.0
+- Pillagers: add a new function to wrap the separator images inside custom divs.
+  This facilitates the implementation of global paragraph indenting (via CSS)
+  while keeping the first sentence in a chapter and after a separator left aligned.
+
 ## Version 3.0.0
 - Books: add conversion rules for stories from the Klotzverse (authored by Eliphas).
 - Project rename: remove the "tex" constraint from the name, as we're already using the filter with different input formats.
