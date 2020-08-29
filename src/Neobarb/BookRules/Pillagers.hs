@@ -2,6 +2,7 @@
 
 module Neobarb.BookRules.Pillagers (
     fixPara,
+    wrapSeparator,
     fixPoemBlocks
 ) where
 
@@ -33,6 +34,11 @@ fixPara p@(P.Para xs) = case xs of
                                     quoteSign = plainDiv ["placard", "quote"]
 fixPara b = b
 
+
+-- The ax separators have to be wrapped in a custom class to facilitate CSS styling
+wrapSeparator :: P.Block -> P.Block
+wrapSeparator i@(P.Para [P.Image _ _ _]) = P.Div ("", ["barbsep"], []) [ i ]
+wrapSeparator b = b
 
 
 -- Helper to inject blank lines into a block of text, using line numbers as point of reference.
