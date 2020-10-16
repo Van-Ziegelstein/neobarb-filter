@@ -5,15 +5,15 @@
 
 packages:
 - completed:
-    hackage: pandoc-types-1.21@sha256:b61ed625da4d1a0d8057fcca4c0c5e174c9f45d94b41504db1532f3fc581e945,4037
+    hackage: pandoc-types-1.22@sha256:15512ce011555ee720820f11cac0598317293406da5812337cbb1550d144e3bd,4071
     pantry-tree:
-      size: 713
-      sha256: e26eb93747538e29168032985a03b428039a16000fea1a4a8d9b9b032ac98b5f
+      size: 737
+      sha256: 28e43150f4bb0d4d880cf92ade20fefcd8705ee95cfe4a1d0bb5efd320982a9d
   original:
-    hackage: pandoc-types-1.21
+    hackage: pandoc-types-1.22
 snapshots:
 - completed:
-    size: 532380
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/9.yaml
-    sha256: 14a7cec114424e4286adde73364438927a553ed248cc50f069a30a67e3ee1e69
-  original: lts-16.9
+    size: 532172
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/18.yaml
+    sha256: 4f2a092c6f4869854e8d7435ab98ce5157c641022c3cbfc4c4614ff3db752e62
+  original: lts-16.18
