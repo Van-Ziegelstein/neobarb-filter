@@ -1,5 +1,8 @@
 # Changelog for neobarb-filter
 
+## Version 3.1.2
+- Update to lts-16.31 and Pandoc 2.11.3.2
+
 ## Version 3.1.1
 - Compatibility with Pandoc 2.11.0.2
 
