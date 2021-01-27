@@ -24,7 +24,7 @@ smeltLangParts _ = id
 
 -- Lift all book specific formating to document level
 smeltBookParts :: String -> P.Pandoc -> P.Pandoc
-smeltBookParts "pillagers" = (walk B.fixPoemBlocks) . (walk B.wrapSeparator) . (walk B.fixPara)
+smeltBookParts "pillagers" = (walk B.fixPoemBlocks) . (walk B.amendCenter) . (walk B.fixPara)
 smeltBookParts "barbmoon" = walk M.fixHeadings
 smeltBookParts "klotzverse" = walk K.cyberfy
 smeltBookParts _ = id

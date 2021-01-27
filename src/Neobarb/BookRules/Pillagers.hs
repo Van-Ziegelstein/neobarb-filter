@@ -2,7 +2,7 @@
 
 module Neobarb.BookRules.Pillagers (
     fixPara,
-    wrapSeparator,
+    amendCenter,
     fixPoemBlocks
 ) where
 
@@ -13,32 +13,33 @@ import qualified Text.Pandoc.Definition as P
 import Text.Pandoc.Walk (walkM)
 
 
--- LaTeX center blocks lose their formatting upon translation to the AST,
--- hence we must manually add back desired styling for each affected snippet.
+-- Some inline elements need to be wrapped for later styling
 fixPara :: P.Block -> P.Block
 fixPara p@(P.Para xs) = case xs of 
-                                y@(P.Str "M." : P.Space : P.Str "Truthblitz" :_) -> plainDiv ["placard","center"] y              
-                                y@(P.Strong (P.Str "Nur" : P.Space : P.Str "f\252r" :_) :_) -> plainDiv ["placard"] y
-                                [P.Emph y@(P.Str "Mein" : P.Space : P.Str "Mitbewohner" :_)] -> centerQuote y
-                                [P.Emph y@(P.Str "Mittagspause" : P.Space : P.Str "-" :_)] -> centerQuote y
-                                [P.Emph y@(_:_:P.Str "Overdrive!":_)] -> centerQuote y
-                                [P.Emph y@(P.Strong [P.Str "Entropie:"] :_)] -> quoteDiv y
-                                [P.Emph y@(P.Str "Und" : P.Space : P.Str "also" :_)] -> quoteDiv y
-                                [P.Emph y@(P.Str "F\252r" : P.Space : P.Str "immer" :_)] -> quoteSign y
-                                y@(P.Str "K." : P.Space :_) -> quoteSign y
+                                (P.Strong (P.Str "Nur" : P.Space : P.Str "f\252r" :_) :_) -> plainDiv ["placard"]
+                                [P.Emph (P.Str "Und" : P.Space : P.Str "also" :_)] -> plainDiv ["quote"]
+                                [P.Emph (P.Str "F\252r" : P.Space : P.Str "immer" :_)] -> plainDiv ["placard", "quote"]
+                                (P.Str "K." : P.Space :_) -> plainDiv ["placard", "quote"]
                                 _ -> p
                                 where
-                                    plainDiv c t = P.Div ("", c, []) [ P.Plain t ]
-                                    centerQuote = plainDiv ["quote", "center"]
-                                    quoteDiv = plainDiv ["quote"]
-                                    quoteSign = plainDiv ["placard", "quote"]
+                                    plainDiv c = P.Div ("", c, []) [ P.Plain xs ]
+
 fixPara b = b
 
 
--- The ax separators have to be wrapped in a custom class to facilitate CSS styling
-wrapSeparator :: P.Block -> P.Block
-wrapSeparator i@(P.Para [P.Image _ _ _]) = P.Div ("", ["barbsep"], []) [ i ]
-wrapSeparator b = b
+-- Pandoc's AST now preserves LaTeX environments as Div blocks,
+-- we merely need to add our custom classes.
+amendCenter :: P.Block -> P.Block
+amendCenter d@(P.Div (id, cs, vs) y@(P.Para xs :_)) = case xs of 
+                                (P.Str "M." : P.Space : P.Str "Truthblitz" :_) -> addDivClass "placard"              
+                                [P.Emph (P.Str "Mein" : P.Space : P.Str "Mitbewohner" :_)] -> addDivClass "quote"
+                                [P.Emph (P.Str "Mittagspause" : P.Space : P.Str "-" :_)] -> addDivClass "quote"
+                                [P.Emph (_:_:P.Str "Overdrive!":_)] -> addDivClass "quote"
+                                [P.Image _ _ _] -> addDivClass "barbsep"
+                                _ -> d
+                                where 
+                                    addDivClass c = P.Div (id, c : cs, vs) y 
+amendCenter b = b
 
 
 -- Helper to inject blank lines into a block of text, using line numbers as point of reference.
