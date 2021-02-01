@@ -16,7 +16,6 @@ import Text.Pandoc.Walk (walkM)
 -- Some inline elements need to be wrapped for later styling
 fixPara :: P.Block -> P.Block
 fixPara p@(P.Para xs) = case xs of 
-                                (P.Strong (P.Str "Nur" : P.Space : P.Str "f\252r" :_) :_) -> plainDiv ["placard"]
                                 [P.Emph (P.Str "Und" : P.Space : P.Str "also" :_)] -> plainDiv ["quote"]
                                 [P.Emph (P.Str "F\252r" : P.Space : P.Str "immer" :_)] -> plainDiv ["placard", "quote"]
                                 (P.Str "K." : P.Space :_) -> plainDiv ["placard", "quote"]

@@ -1,5 +1,10 @@
 # Changelog for neobarb-filter
 
+## Version 3.2.1
+- The special paragraph in the chapter "Konkurrenz" now uses LaTeX's 
+  center environment in the manuscript, hence the restyling is no longer
+  necessary.
+
 ## Version 3.2.0
 - Reworked paragraph style fixes to make use of Pandoc's
   new ability to preserve LaTeX environments as Div blocks with
