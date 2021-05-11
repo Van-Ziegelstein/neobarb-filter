@@ -3,17 +3,10 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages:
-- completed:
-    hackage: pandoc-types-1.22@sha256:15512ce011555ee720820f11cac0598317293406da5812337cbb1550d144e3bd,4071
-    pantry-tree:
-      size: 737
-      sha256: 28e43150f4bb0d4d880cf92ade20fefcd8705ee95cfe4a1d0bb5efd320982a9d
-  original:
-    hackage: pandoc-types-1.22
+packages: []
 snapshots:
 - completed:
-    size: 534126
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/31.yaml
-    sha256: 637fb77049b25560622a224845b7acfe81a09fdb6a96a3c75997a10b651667f6
-  original: lts-16.31
+    size: 567672
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/17/11.yaml
+    sha256: 03181cdbeb671eb605bbcf6f285bea4d094b6ac7433a0e14a9f1dd54ad995938
+  original: lts-17.11

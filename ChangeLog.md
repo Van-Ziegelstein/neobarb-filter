@@ -1,6 +1,9 @@
 # Changelog for neobarb-filter
 
-## Version 3.2.1
+## Version 3.2.2
+- Updated to lts-17.11 and ensured compatibility with Pandoc 2.13
+
+## Version 3.2.2
 - The special paragraph in the chapter "Konkurrenz" now uses LaTeX's 
   center environment in the manuscript, hence the restyling is no longer
   necessary.
