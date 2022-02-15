@@ -2,6 +2,9 @@
 
 
 ## Version 3.2.3
+- Updated to lts-18.25 and ensured compatibility with Pandoc 2.17.1.1
+
+## Version 3.2.3
 - Updated to lts-18.4 and ensured compatibility with Pandoc 2.14.1
 
 ## Version 3.2.2
