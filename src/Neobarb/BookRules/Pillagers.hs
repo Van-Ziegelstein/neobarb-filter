@@ -1,7 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Neobarb.BookRules.Pillagers (
-    fixPara,
     amendCenter,
     fixPoemBlocks
 ) where
@@ -11,19 +10,6 @@ import qualified Data.List as L
 import qualified Control.Monad.State as S
 import qualified Text.Pandoc.Definition as P
 import Text.Pandoc.Walk (walkM)
-
-
--- Some inline elements need to be wrapped for later styling
-fixPara :: P.Block -> P.Block
-fixPara p@(P.Para xs) = case xs of 
-                                [P.Emph (P.Str "Und" : P.Space : P.Str "also" :_)] -> plainDiv ["quote"]
-                                [P.Emph (P.Str "F\252r" : P.Space : P.Str "immer" :_)] -> plainDiv ["placard", "quote"]
-                                (P.Str "K." : P.Space :_) -> plainDiv ["placard", "quote"]
-                                _ -> p
-                                where
-                                    plainDiv c = P.Div ("", c, []) [ P.Plain xs ]
-
-fixPara b = b
 
 
 -- Pandoc's AST now preserves LaTeX environments as Div blocks,
