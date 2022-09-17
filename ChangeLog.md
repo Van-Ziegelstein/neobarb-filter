@@ -1,6 +1,10 @@
 # Changelog for neobarb-filter
 
 
+## Version 3.3.1
+- Tweaked patterns for the "Immersed" paragraph fixes (to accomodate for the German translation).
+- Updated to **lts-19.23** and ensured compatibility with **Pandoc 2.19.2**.
+
 ## Version 3.3.0
 - Added conversion filters for the "Immersed" short story.
 - Factored out some common logic into a new module.
