@@ -1,13 +1,13 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
+-- This file has been generated from package.yaml by hpack version 0.35.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 10dede4b4b3979fbb76ec5c8aac429aa1c3de40627f01b095a75bc25230f51c1
+-- hash: baf8064efa6cf647dae5c1998fa0e3094e3c95d358d6c9a45d96c77f6eecd3fd
 
 name:           neobarb-filter
-version:        0.3.3.1
+version:        0.3.3.2
 synopsis:       Pandoc filter for the sacred tomes of the Neobarbarian tribe.
 description:    Please see the README on GitHub at <https://github.com/Van-Ziegelstein/neobarb-filter#readme>
 category:       Text
