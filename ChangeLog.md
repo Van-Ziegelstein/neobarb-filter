@@ -1,6 +1,9 @@
 # Changelog for neobarb-filter
 
 
+## Version 3.3.3
+- Updated to **lts-20.4** and **Stack 2.9.3**.
+
 ## Version 3.3.2
 - Updated to **lts-19.25** and **Stack 2.9.1**.
 
