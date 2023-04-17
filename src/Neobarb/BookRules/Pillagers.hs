@@ -16,14 +16,14 @@ import Text.Pandoc.Walk (walkM)
 -- we merely need to add our custom classes.
 amendCenter :: P.Block -> P.Block
 amendCenter d@(P.Div (id, cs, vs) y@(P.Para xs :_)) = case xs of 
-                                (P.Str "M." : P.Space : P.Str "Truthblitz" :_) -> addDivClass "placard"              
-                                [P.Emph (P.Str "Mein" : P.Space : P.Str "Mitbewohner" :_)] -> addDivClass "quote"
-                                [P.Emph (P.Str "Mittagspause" : P.Space : P.Str "-" :_)] -> addDivClass "quote"
-                                [P.Emph (_:_:P.Str "Overdrive!":_)] -> addDivClass "quote"
-                                [P.Image _ _ _] -> addDivClass "barbsep"
+                                (P.Str "M." : P.Space : P.Str "Truthblitz" :_) -> appendDivClass "placard" 
+                                [P.Emph (P.Str "Mein" : P.Space : P.Str "Mitbewohner" :_)] -> appendDivClass "quote"
+                                [P.Emph (P.Str "Mittagspause" : P.Space : P.Str "-" :_)] -> appendDivClass "quote"
+                                [P.Emph (_:_:P.Str "Overdrive!":_)] -> appendDivClass "quote"
+                                [P.Image _ _ _] -> appendDivClass "barbsep"
                                 _ -> d
                                 where 
-                                    addDivClass c = P.Div (id, c : cs, vs) y 
+                                    appendDivClass c = P.Div (id, cs ++ [c], vs) y 
 amendCenter b = b
 
 
