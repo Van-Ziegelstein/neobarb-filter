@@ -1,5 +1,8 @@
 # Changelog for neobarb-filter
 
+## Version 3.3.5
+- Updated to **lts-21.3** and stack **2.11.1**.
+- Ensured compatibility with **Pandoc **3.1.5**.
 
 ## Version 3.3.4
 - Updated to **lts-20.11** and **pandoc-types 1.23**.
