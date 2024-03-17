@@ -2,7 +2,8 @@
 
 module Neobarb.Smelter (
     smeltLangParts,
-    smeltBookParts
+    smeltBookParts,
+    smeltMiscParts
 ) where
 
 
@@ -14,6 +15,12 @@ import qualified Neobarb.BookRules.Barbverse as Barbverse
 import qualified Neobarb.BookRules.Pillagers as Pillagers
 import qualified Neobarb.BookRules.Barbmoon as Barbmoon
 import qualified Neobarb.BookRules.Klotzverse as Klotzverse
+import qualified Neobarb.MiscRules.Compat as Compat
+
+
+-- Common formatting changes that can be applied to all TeX source documents
+smeltMiscParts :: P.Pandoc -> P.Pandoc
+smeltMiscParts = walk Compat.capitalize
 
 
 -- Lift all language specific typography adjustments to document level

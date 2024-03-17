@@ -6,7 +6,7 @@ module Neobarb.ArgForge (
 import System.Console.GetOpt
 import Data.Char (toLower)
 import Text.Pandoc.Definition (Pandoc)
-import Neobarb.Smelter (smeltBookParts, smeltLangParts)
+import Neobarb.Smelter (smeltBookParts, smeltLangParts, smeltMiscParts)
 
 
 data Options = Options { 
@@ -43,6 +43,6 @@ optForge argv = case getOpt Permute options argv of
                                         let 
                                             uOpts = foldl (flip id) defaultOptions o
                                         in
-                                            (smeltBookParts $ optBook uOpts) . (smeltLangParts $ optLang uOpts) 
+                                            smeltMiscParts . (smeltBookParts $ optBook uOpts) . (smeltLangParts $ optLang uOpts) 
                                                 
                         (_, _, errs) -> id

@@ -1,5 +1,14 @@
 # Changelog for neobarb-filter
 
+
+## Version 3.4.0
+- Updated to **lts-22.11** and stack **2.15.1**.
+- Ensured compatibility with **Pandoc **3.1.12.2**.
+- Added a new rule category, which will *always* be applied to all input documents: "misc"
+- Added a new "Compat" lib, with a function to replace `SmallCap` data types (created by Pandoc
+  from TeX's `textsc{}` environments with uppercased strings.
+
+
 ## Version 3.3.5
 - Updated to **lts-21.3** and stack **2.11.1**.
 - Ensured compatibility with **Pandoc **3.1.5**.
