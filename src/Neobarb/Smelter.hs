@@ -15,12 +15,12 @@ import qualified Neobarb.BookRules.Barbverse as Barbverse
 import qualified Neobarb.BookRules.Pillagers as Pillagers
 import qualified Neobarb.BookRules.Barbmoon as Barbmoon
 import qualified Neobarb.BookRules.Klotzverse as Klotzverse
-import qualified Neobarb.MiscRules.Compat as Compat
+import qualified Neobarb.MiscRules.Misc as Misc
 
 
--- Common formatting changes that can be applied to all TeX source documents
+-- Common formatting changes that can be applied to all source documents
 smeltMiscParts :: P.Pandoc -> P.Pandoc
-smeltMiscParts = walk Compat.capitalize
+smeltMiscParts = walk Misc.capCompat
 
 
 -- Lift all language specific typography adjustments to document level

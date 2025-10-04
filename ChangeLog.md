@@ -1,6 +1,11 @@
 # Changelog for neobarb-filter
 
 
+## Version 3.5.0
+* Renamed some stuff concerning the "misc" parsing module, in preparation of potential "additions" in the near future.
+* Todo: It would seem that Pandoc already supports the English "fancy quote" Unicode codepoints, ellipsis and the "---" to em dash conversion out of the box. May be time to drop some code.
+* Updated to **lts-24.13**.
+
 ## Version 3.4.2
 * Updated to **lts-23.1**.
 
